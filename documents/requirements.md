@@ -23,49 +23,60 @@ User interface will provide facilities to create, edit, delete and share present
 - Performance issues in old browsers.
 - Easy extensibility and changeability of content.
 ## 3 System Requirements
-To use this application, you need a device with Enternet access and web browser installed. Recommended browsers:
+To use this application, you need a device with Enternet access and latest web browser installed. Recommended browsers:
 
 - Google Chrome
 - Mozilla Firefox
 - Safari
-- Yandex
+- Yandex-Browser
 
 ### 3.1 Functional Requirements
-3.1.1 Navigation bar in site header with:
+Each view is represented in mockups.
+3.1.1 Navigation bar with sections:
+- Profile
+- Presentations
+- New slides
+- Search
 
-- Profile (form with a user editable information)
-- Presentations (list of your presentations)
-- New slides (wokrspace)
-- Search (list of search results)
+3.1.2 Workspace with:
+- Workspace grid
+- List of available blocks
+- List of tools
+- Slides thumbnails (slides flow)
+- Inline editing tools
 
-3.1.2 Workspace:
+3.1.3 Logo at the site header.
 
-- Workspace grid at the center
-- List of available blocks at the left side
-- List of tools at the left side
-- Slides thumbnails at the bottom
-- Inline editing tools at the blocks
+3.1.4 Footer with sections:
+- About
+- Contacts
 
-3.1.3 On the center side of each page must be located content according section.
+3.1.5 Share and socials links.
 
-3.1.4 Logo at the site header.
+3.1.6 Export slides to PDF (without video support).
 
-3.1.5 Footer with:
-- About (text)
-- Contacts (text)
+3.1.7 Search projects by name, author and tags.
 
-3.1.6 Internalization of toolset and content in Russian and English. Implemented by icons on right side of top the navigation bar
-
-3.1.7 Implemention of database storing information about users and thier projects.
-
-3.1.8 Share links and socials at the projects list view.
+3.1.8 Tags autocompletion.
 
 ### 3.2 Non-Functional Requirements
-1) Secure HTTPS channel
-2) Throughtput. Simultaneously at least 1000 users at a time
-3) Responsive Design
 #### 3.2.1 SOFTWARE QUALITY ATTRIBUTES
-- Performance - this platform is intended to be lightweight and esay to use, so it should be fast to provide it. App loading can take a several time (about 2 seconds), but all subsequest actions should not take more than 100ms.
+* Performance - this platform is intended to be lightweight and esay to use, so it should be fast to provide it. App loading can take a several time (about 2 seconds), but all subsequest actions should not take more than 100ms.
 
-- Reliability - this web app must be deployed 24 hours per day, so user should be able to access it whenever he wants. Measures of time when user can't access web page must be less than 24 hours per month.
+* Reliability - this web app must be deployed 24 hours per day, so user should be able to access it whenever he wants. Measures of time when user can't access web page must be more than 24 hours per month.
 
+* Responsive Design - content must be readable on mobile, tablet and desktop devices.
+
+* Throughtput - Simultaneously 1000 users at the same time (It's mostly heroku issue, but it also depends on application). 
+
+* Internalization - toolset and content in Russian and English
+
+#### 3.2.2 EXTERNAL INTERFACES
+
+* Minimal supported screen resolution 320x568 for mobile phones.
+
+#### 3.2.3 CONSTRAINTS
+* Backend: Java 8, Spring Framework ^4.0.0
+* Frontend:Twitter Bootstrap ^3.0.0, Angular 2 (4+).
+* Database: MySQL ^5.1 / PostgreSQL ^9.5
+* Cache: Redis ^4.0.2
