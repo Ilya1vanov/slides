@@ -6,7 +6,7 @@ The designed software is web app that represent an lightweight platform for crea
 ### 2.1 Software Interfaces
 
 #### Used technologies
-- HTML, CSS, Typescipt and Angular (4+) on the front-end
+- HTML, CSS, Typescript and Angular (4+) on the front-end
 - Java, Kotlin and Spring Framework on the backend
 - MySQL/PostgreSQL RDBMS to store projects
 - Redis DB to store temp keys and hashes.
@@ -16,14 +16,14 @@ The designed software is web app that represent an lightweight platform for crea
 User interface will provide facilities to create, edit, delete and share presentations. For more details see mockups.
 
 ### 2.3 User Characteristics
-- Developers, team leads, project managers, HR, resource managers - people in IT sphere, who need to explaint thier ideas in slides.
-- Default staff of institute and school. Engineers, laborants, administration, managment, teachers and also students can use it.
+- Developers, team leads, project managers, HR, resource managers - people in IT sphere, who need to explain their ideas in slides.
+- Default staff of institute and school. Engineers, laborants, administration, management, teachers and also students can use it.
 - People with a great ideas (e.g., startups) who want to broadcast it.
 ### 2.4 Assumptions and Dependencies
 - Performance issues in old browsers.
 - Easy extensibility and changeability of content.
 ## 3 System Requirements
-To use this application, you need a device with Enternet access and latest web browser installed. Recommended browsers:
+To use this application, you need a device with Internet access and latest web browser installed. Recommended browsers:
 
 - Google Chrome
 - Mozilla Firefox
@@ -61,13 +61,13 @@ Each view is represented in mockups.
 
 ### 3.2 Non-Functional Requirements
 #### 3.2.1 SOFTWARE QUALITY ATTRIBUTES
-* Performance - this platform is intended to be lightweight and esay to use, so it should be fast to provide it. App loading can take a several time (about 2 seconds), but all subsequest actions should not take more than 100ms.
+* Performance - this platform is intended to be lightweight and easy to use, so it should be fast to provide it. App loading can take a several time (about 2 seconds), but all subsequent actions should not take more than 100ms.
 
 * Reliability - this web app must be deployed 24 hours per day, so user should be able to access it whenever he wants. Measures of time when user can't access web page must be more than 24 hours per month.
 
 * Responsive Design - content must be readable on mobile, tablet and desktop devices.
 
-* Throughtput - Simultaneously 1000 users at the same time (It's mostly heroku issue, but it also depends on application). 
+* Throughput - Simultaneously 1000 users at the same time (It's mostly heroku issue, but it also depends on application). 
 
 * Internalization - toolset and content in Russian and English
 
