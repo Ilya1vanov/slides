@@ -23,7 +23,7 @@ User interface will provide facilities to create, edit, delete and share present
 - Performance issues in old browsers.
 - Easy extensibility and changeability of content.
 ## 3 System Requirements
-To use this application, you need a device with Internet access and latest web browser installed. Recommended browsers:
+To use this application, you need a device with Enternet access and latest web browser installed. Recommended browsers:
 
 - Google Chrome
 - Mozilla Firefox
@@ -32,32 +32,27 @@ To use this application, you need a device with Internet access and latest web b
 
 ### 3.1 Functional Requirements
 Each view is represented in mockups.
-3.1.1 Navigation bar with sections:
-- Profile
-- Presentations
-- New slides
-- Search
+3.1.1 Possibility to create presentations and slides.
 
-3.1.2 Workspace with:
-- Workspace grid
-- List of available blocks
-- List of tools
-- Slides thumbnails (slides flow)
-- Inline editing tools
+3.1.2 Posiibility to search public presentations.
 
-3.1.3 Logo at the site header.
+3.1.3 Possibility to view user's profile information.
 
-3.1.4 Footer with sections:
-- About
-- Contacts
+3.1.4 User should have out-of-box blocks to create slides.
 
-3.1.5 Share and socials links.
+3.1.5 User should be able to control slides flow (order).
 
-3.1.6 Export slides to PDF (without video support).
+3.1.6 User should have inline edit tools to tune blocks.
 
-3.1.7 Search projects by name, author and tags.
+3.1.7 Appication should create premanent share links to the presentaion.
 
-3.1.8 Tags autocompletion.
+3.1.8 Application should interact with social API (like vk).
+
+3.1.9 Export slides to PDF.
+
+3.1.10 Search by tags should be present.
+
+3.1.11 Tags autocompletion.
 
 ### 3.2 Non-Functional Requirements
 #### 3.2.1 SOFTWARE QUALITY ATTRIBUTES
