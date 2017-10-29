@@ -46,13 +46,9 @@ Each view is represented in mockups.
 
 3.1.7 Appication should create premanent share links to the presentaion.
 
-3.1.8 Application should interact with social API (like vk).
+3.1.8 Search by tags should be present.
 
-3.1.9 Export slides to PDF.
-
-3.1.10 Search by tags should be present.
-
-3.1.11 Tags autocompletion.
+3.1.9 Tags autocompletion.
 
 ### 3.2 Non-Functional Requirements
 #### 3.2.1 SOFTWARE QUALITY ATTRIBUTES
