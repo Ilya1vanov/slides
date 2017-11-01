@@ -84,8 +84,6 @@ Each view is represented in mockups.
 
 * Throughput - Simultaneously 1000 users at the same time (It's mostly heroku issue, but it also depends on application). 
 
-* Internalization - toolset and content in Russian and English
-
 #### 3.2.2 EXTERNAL INTERFACES
 
 * Minimal supported screen resolution 320x568 for mobile phones.
