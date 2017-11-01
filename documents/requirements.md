@@ -5,6 +5,30 @@ The designed software is web app that represent an lightweight platform for crea
 
 ### 2.1 Software Interfaces
 
+Start page:
+
+![](../mockups/start-page.png)
+
+Profile page:
+
+![](../mockups/profile.png)
+
+Workspace:
+
+![](../mockups/workspace.png)
+
+Slides:
+
+![](../mockups/slides.png)
+
+Slides list:
+
+![](../mockups/slides-list.png)
+
+Slides (finished):
+
+![](../mockups/slides-list.png)
+
 #### Used technologies
 - HTML, CSS, Typescript and Angular (4+) on the front-end
 - Java, Kotlin and Spring Framework on the backend
