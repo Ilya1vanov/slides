@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev
+
+security:
+  oauth2.resource.filter-order: 3
+
+  signing-key: MaYzkSjmkzPC57L
+  security-realm: Spring Boot JWT Example Realm
+
+  jwt:
+    client-id: testjwtclientid
+    client-secret: XY7kmzoNzl100
+    grant-type: password
+    scope-read: read
+    scope-write: write
+    resource-ids: testjwtresourceid
+---
+spring:
+  profiles: dev
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    database: H2
+#  datasource:
+#    url: jdbc:h2:mem:notes_db;DB_CLOSE_ON_EXIT=FALSE
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+logging:
+  level:
+    org.hibernate: info
+    org.springframework: info
+    .: debug
+---
+spring:
+  profiles: prod
+  devtools:
+    livereload.enabled: false
+    restart.enabled: false
+#  jpa:
+#      hibernate:
+#        ddl-auto: create
+#      database: MYSQL
+#  datasource:
+#      url: jdbc:mysql://localhost:3306/spring_test
+#      driver-class-name: com.mysql.jdbc.Driver
+#      username: root
+#      password: root
