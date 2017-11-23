@@ -1,6 +1,7 @@
 package com.ilya.ivanov.slides.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Slide {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

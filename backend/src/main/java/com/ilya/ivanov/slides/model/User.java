@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 public final class User implements UserDetails {
     @Id
