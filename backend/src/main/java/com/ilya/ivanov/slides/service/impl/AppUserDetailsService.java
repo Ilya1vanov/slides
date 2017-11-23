@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Created by ilya-laptop on 06/05/17.
@@ -22,17 +23,11 @@ public class AppUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        val user = userRepository.findByUsername(s);
-
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("The username %s doesn't exist", s));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        val user = Optional.ofNullable(userRepository.findByUsername(username));
+        if (user.isPresent()) {
+            return user.get();
         }
-
-        val authorities = new ArrayList<GrantedAuthority>();
-        user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
-
-        return new org.springframework.security.core.userdetails.
-                User(user.getUsername(), user.getPassword(), authorities);
+        throw new UsernameNotFoundException(String.format("The username %s doesn't exist", username));
     }
 }

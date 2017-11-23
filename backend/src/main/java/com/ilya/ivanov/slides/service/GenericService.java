@@ -1,7 +1,7 @@
 package com.ilya.ivanov.slides.service;
 
-import com.ilya.ivanov.slides.domain.User;
-import com.ilya.ivanov.slides.domain.RandomCity;
+import com.ilya.ivanov.slides.model.User;
+import com.ilya.ivanov.slides.model.RandomCity;
 
 import java.util.List;
 

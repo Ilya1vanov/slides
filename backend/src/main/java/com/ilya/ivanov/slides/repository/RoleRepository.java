@@ -1,6 +1,6 @@
 package com.ilya.ivanov.slides.repository;
 
-import com.ilya.ivanov.slides.domain.Role;
+import com.ilya.ivanov.slides.model.Role;
 import org.springframework.data.repository.CrudRepository;
 
 /**

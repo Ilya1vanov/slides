@@ -1,7 +1,7 @@
 package com.ilya.ivanov.slides.service.impl;
 
-import com.ilya.ivanov.slides.domain.RandomCity;
-import com.ilya.ivanov.slides.domain.User;
+import com.ilya.ivanov.slides.model.RandomCity;
+import com.ilya.ivanov.slides.model.User;
 import com.ilya.ivanov.slides.repository.RandomCityRepository;
 import com.ilya.ivanov.slides.repository.UserRepository;
 import com.ilya.ivanov.slides.service.GenericService;

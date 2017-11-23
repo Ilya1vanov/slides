@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		        .authorizeRequests()
 				.antMatchers(HttpMethod.GET,"/public/**").permitAll()
 		        .antMatchers("/actuator/**", "/api-docs/**").permitAll()
-		        .antMatchers("/springjwt/**").authenticated()
+		        .antMatchers("/resources/**").authenticated()
 		        .and()
 		        .httpBasic()
 		        .realmName(securityRealm)
@@ -73,7 +73,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.GET,"/public/**");
+        web.ignoring()
+				.antMatchers(HttpMethod.GET,"/public/**")
+		.antMatchers(HttpMethod.GET, "/health", "/info");
     }
 
     @Bean

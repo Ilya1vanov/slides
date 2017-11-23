@@ -1,5 +1,9 @@
 {
-  "/springjwt/*": {
+  "/resources/*": {
+    "target": "http://localhost:8081",
+    "secure": false
+  },
+  "/api/*": {
     "target": "http://localhost:8081",
     "secure": false
   },

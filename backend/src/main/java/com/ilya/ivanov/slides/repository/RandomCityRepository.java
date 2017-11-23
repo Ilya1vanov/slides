@@ -1,6 +1,6 @@
 package com.ilya.ivanov.slides.repository;
 
-import com.ilya.ivanov.slides.domain.RandomCity;
+import com.ilya.ivanov.slides.model.RandomCity;
 import org.springframework.data.repository.CrudRepository;
 
 /**
