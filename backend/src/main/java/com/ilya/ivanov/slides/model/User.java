@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -53,6 +54,9 @@ public final class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id",
                     referencedColumnName = "id"))
     private List<Role> authorities;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private Collection<Presentation> presentations;
 
     @Override
     public boolean isAccountNonExpired() {
