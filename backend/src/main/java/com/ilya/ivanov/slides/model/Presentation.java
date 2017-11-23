@@ -16,7 +16,7 @@ import java.util.Collection;
 @Table
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Presentation {
+public final class Presentation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -30,6 +30,9 @@ public class Presentation {
     @Getter(onMethod = @__(@JsonIgnore))
     private User owner;
 
-    @OneToMany(mappedBy = "presentation", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Slide> slides;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private ShareLink shareLink;
 }
