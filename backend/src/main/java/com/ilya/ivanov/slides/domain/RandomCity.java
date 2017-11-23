@@ -11,16 +11,16 @@ import javax.persistence.*;
  * Created by ilya-laptop on 10/05/17.
  */
 @Entity
-@Table(name = "random_city")
+@Table
 @Data
 @NoArgsConstructor
 public final class RandomCity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column
     private Long id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
     public RandomCity(String name) {

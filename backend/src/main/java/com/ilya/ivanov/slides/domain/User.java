@@ -13,30 +13,30 @@ import java.util.List;
  * Created by ilya-laptop on 06/05/17.
  */
 @Entity
-@Table(name = "app_user")
+@Table
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 public final class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column
     private Long id;
 
-    @Column(name = "username")
+    @Column
     @NonNull
     private String username;
 
-    @Column(name = "password")
+    @Column
     @JsonIgnore
     @NonNull
     private String password;
 
-    @Column(name = "first_name")
+    @Column
     @NonNull
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column
     @NonNull
     private String lastName;
 
@@ -45,7 +45,7 @@ public final class User {
      * they are a fairly small collection of items for this example.
      */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns
+    @JoinTable(joinColumns
             = @JoinColumn(name = "user_id",
             referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id",
