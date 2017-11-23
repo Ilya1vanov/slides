@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.List;
 
 /**
- * Created by ilya-laptop on 06/05/17.
+ * Created by i.ivanov on 11/23/17.
  */
 @RestController
-@RequestMapping("/resources")
+@RequestMapping("/admin")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@PreAuthorize("hasAuthority('STANDARD_USER')")
-public class ResourceController {
+@PreAuthorize("hasAuthority('ADMIN_USER')")
+public class AdminController {
     private final GenericService userService;
 
-    @GetMapping("/user")
-    public User getUser(Principal principal) {
-        return userService.findByUsername(principal.getName());
+    @GetMapping(value ="/users")
+    public List<User> getUsers(){
+        return userService.findAllUsers();
     }
 }

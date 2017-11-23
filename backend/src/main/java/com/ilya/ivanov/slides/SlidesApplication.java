@@ -1,9 +1,7 @@
 package com.ilya.ivanov.slides;
 
-import com.ilya.ivanov.slides.model.RandomCity;
 import com.ilya.ivanov.slides.model.Role;
 import com.ilya.ivanov.slides.model.User;
-import com.ilya.ivanov.slides.repository.RandomCityRepository;
 import com.ilya.ivanov.slides.repository.RoleRepository;
 import com.ilya.ivanov.slides.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -27,24 +25,10 @@ public class SlidesApplication {
 
     @Bean
     @Profile("dev")
-    public CommandLineRunner dev(RandomCityRepository randomCityRepository, RoleRepository roleRepository, UserRepository userRepository) {
+    public CommandLineRunner dev(RoleRepository roleRepository, UserRepository userRepository) {
         return args -> {
-            populateRandomCities(randomCityRepository);
             populateUsers(roleRepository, userRepository);
         };
-    }
-
-    private void populateRandomCities(RandomCityRepository randomCityRepository) {
-        val randomCities = Arrays.asList(
-                new RandomCity("Bamako"),
-                new RandomCity("Nonkon"),
-                new RandomCity("Houston"),
-                new RandomCity("Toronto"),
-                new RandomCity("New York"),
-                new RandomCity("Mopti"),
-                new RandomCity("Koulikoro"),
-                new RandomCity("Moscow"));
-        randomCityRepository.save(randomCities);
     }
 
     private void populateUsers(RoleRepository roleRepository, UserRepository userRepository) {

@@ -1,15 +1,10 @@
 package com.ilya.ivanov.slides.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
+import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -35,8 +30,8 @@ public final class User implements UserDetails {
     private String email;
 
     @Column
-    @JsonIgnore
     @NonNull
+    @Getter(onMethod = @__(@JsonIgnore))
     private String password;
 
     @Column

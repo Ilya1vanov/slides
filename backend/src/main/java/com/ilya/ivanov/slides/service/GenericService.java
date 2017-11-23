@@ -1,7 +1,6 @@
 package com.ilya.ivanov.slides.service;
 
 import com.ilya.ivanov.slides.model.User;
-import com.ilya.ivanov.slides.model.RandomCity;
 
 import java.util.List;
 
@@ -12,6 +11,4 @@ public interface GenericService {
     User findByUsername(String username);
 
     List<User> findAllUsers();
-
-    List<RandomCity> findAllRandomCities();
 }

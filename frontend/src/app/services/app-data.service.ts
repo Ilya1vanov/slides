@@ -7,10 +7,10 @@ export class AppDataService {
   }
 
   getCities() {
-    return this.http.get('/resources/cities').map(res => res.json());
+    return this.http.get('/resources/user').map(res => res.json());
   }
 
   getUsers() {
-    return this.http.get('/resources/users').map(res => res.json());
+    return this.http.get('/admin/users').map(res => res.json());
   }
 }
