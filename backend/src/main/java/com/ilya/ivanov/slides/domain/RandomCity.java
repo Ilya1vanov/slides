@@ -1,6 +1,9 @@
 package com.ilya.ivanov.slides.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,7 +13,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "random_city")
 @Data
-public class RandomCity {
+@NoArgsConstructor
+public final class RandomCity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,4 +22,8 @@ public class RandomCity {
 
     @Column(name = "name")
     private String name;
+
+    public RandomCity(String name) {
+        this.name = name;
+    }
 }
