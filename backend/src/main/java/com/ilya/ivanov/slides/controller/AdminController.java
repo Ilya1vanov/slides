@@ -1,7 +1,7 @@
 package com.ilya.ivanov.slides.controller;
 
-import com.ilya.ivanov.slides.model.User;
-import com.ilya.ivanov.slides.service.GenericService;
+import com.ilya.ivanov.slides.data.model.domain.user.User;
+import com.ilya.ivanov.slides.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,9 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @PreAuthorize("hasAuthority('ADMIN_USER')")
 public class AdminController {
-    private final GenericService userService;
+    private final UserService userService;
 
     @GetMapping(value ="/users")
+    @PreAuthorize("#oauth2.hasScope(T(com.ilya.ivanov.slides.constants.JwtConstants).scopeRead)")
     public List<User> getUsers(){
         return userService.findAllUsers();
     }
