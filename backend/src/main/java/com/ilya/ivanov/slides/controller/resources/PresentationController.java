@@ -1,28 +1,20 @@
 package com.ilya.ivanov.slides.controller.resources;
 
-import com.ilya.ivanov.slides.constants.JwtConstants;
 import com.ilya.ivanov.slides.data.model.domain.presentation.Presentation;
-import com.ilya.ivanov.slides.data.model.domain.user.User;
 import com.ilya.ivanov.slides.data.model.dto.presentation.PresentationDto;
-import com.ilya.ivanov.slides.data.repository.PresentationRepository;
-import com.ilya.ivanov.slides.exception.ResourceNotFoundException;
 import com.ilya.ivanov.slides.service.PresentationService;
-import com.ilya.ivanov.slides.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.Collection;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 import static javax.servlet.http.HttpServletResponse.SC_OK;

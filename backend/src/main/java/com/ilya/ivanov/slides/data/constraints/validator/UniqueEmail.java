@@ -1,5 +1,6 @@
 package com.ilya.ivanov.slides.data.constraints.validator;
 
+import com.ilya.ivanov.slides.data.constraints.annotation.UniqueEmailValidator;
 import com.ilya.ivanov.slides.data.constraints.annotation.UniqueUsernameValidator;
 
 import javax.validation.Constraint;
@@ -19,7 +20,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  */
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = UniqueUsernameValidator.class)
+@Constraint(validatedBy = UniqueEmailValidator.class)
 @Documented
 public @interface UniqueEmail {
     String message() default "User with this email already exists";

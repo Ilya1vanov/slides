@@ -60,6 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/info"
     };
 
+    private static final String[] API_WHITELIST = {
+            "/api/validate/**"
+    };
+
     @Value("${security.signing-key}")
     private String signingKey;
 
@@ -83,7 +87,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers(HttpMethod.GET, STATIC_RESOURCES)
                 .antMatchers(HttpMethod.GET, ACTUATOR_AUTH_WHITELIST)
-                .antMatchers(HttpMethod.GET, SWAGGER_AUTH_WHITELIST);
+                .antMatchers(HttpMethod.GET, SWAGGER_AUTH_WHITELIST)
+                .antMatchers(API_WHITELIST);
     }
 
     @Bean
