@@ -1,16 +1,19 @@
 spring:
   profiles:
     active: dev
-  devtools.restart.exclude: static/**
+  devtools.restart.exclude: /static/**
 
 server.port: 8081
 management.port: 9000
 
 security:
   oauth2.resource.filter-order: 3
-
+  basic:
+    realm: Slides
+  sessions: stateless
+  headers.cache: false
+  enable-csrf: false
   signing-key: MaYzkSjmkzPC57L
-  security-realm: Spring Boot JWT Example Realm
 
   jwt:
     client-id: testjwtclientid
@@ -19,6 +22,7 @@ security:
     scope-read: read
     scope-write: write
     resource-ids: testjwtresourceid
+    user-id-key: id
 ---
 spring:
   profiles: dev
@@ -27,7 +31,7 @@ spring:
       ddl-auto: create
     database: H2
   datasource:
-    url: jdbc:h2:mem:notes_db;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:slides_db;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
     password:

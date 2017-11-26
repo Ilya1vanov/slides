@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -38,9 +39,10 @@ public class AdditionalWebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
+    @Profile("prod")
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/public/**")
+                .addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
     }
 }
