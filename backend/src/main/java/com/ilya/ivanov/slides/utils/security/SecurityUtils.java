@@ -1,8 +1,6 @@
-package com.ilya.ivanov.slides.utils;
+package com.ilya.ivanov.slides.utils.security;
 
 import com.ilya.ivanov.slides.constants.JwtConstants;
-import com.ilya.ivanov.slides.data.model.domain.user.User;
-import com.ilya.ivanov.slides.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;

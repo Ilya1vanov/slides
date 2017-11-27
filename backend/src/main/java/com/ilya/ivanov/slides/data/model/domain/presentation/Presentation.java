@@ -3,16 +3,15 @@ package com.ilya.ivanov.slides.data.model.domain.presentation;
 import com.google.common.collect.Lists;
 import com.ilya.ivanov.slides.data.model.domain.user.User;
 import com.ilya.ivanov.slides.data.model.dto.presentation.PresentationDto;
+import com.ilya.ivanov.slides.utils.time.TimeUtils;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.search.annotations.Analyzer;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.*;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 import static com.ilya.ivanov.slides.constants.SearchConstants.defaultAnalyzerName;
 import static java.util.stream.Collectors.toList;
@@ -37,6 +36,16 @@ public final class Presentation {
     @Field
     @Analyzer(definition = defaultAnalyzerName)
     private String title;
+
+    @Column(name = "creation_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Field(store = Store.YES, analyze = Analyze.NO)
+    private Date creationDate = TimeUtils.now();
+
+    @Column(name = "modification_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Field(store = Store.YES, analyze = Analyze.NO)
+    private Date modificationDate = TimeUtils.now();
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "owner_id")
@@ -64,6 +73,11 @@ public final class Presentation {
         this.tags = tags;
     }
 
+    @PreUpdate
+    private void preUpdate() {
+        this.modificationDate = TimeUtils.now();
+    }
+
     public Presentation merge(PresentationDto presentationDto) {
         this.title = presentationDto.getTitle();
         this.tags = presentationDto.getTags();
@@ -77,11 +91,13 @@ public final class Presentation {
         val id = this.getId();
         val owner = this.getOwner().getUsername();
         val title = this.getTitle();
+        val creationDate = this.getCreationDate().getTime();
+        val modificationDate = this.getCreationDate().getTime();
         val slidesIds = this.getSlides().stream().map(Slide::getId).collect(toList());
         val shareLink = this.getShareLink();
         String link = shareLink != null ? shareLink.getLink() : null;
         val tags = this.getTags();
-        return new PresentationDto(id, owner, title, tags, slidesIds, link);
+        return new PresentationDto(id, owner, title, creationDate, modificationDate, tags, slidesIds, link);
     }
 
     public static Presentation fromDto(PresentationDto presentationDto) {

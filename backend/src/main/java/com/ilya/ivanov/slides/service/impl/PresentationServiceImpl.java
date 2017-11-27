@@ -1,18 +1,16 @@
 package com.ilya.ivanov.slides.service.impl;
 
 import com.ilya.ivanov.slides.data.model.domain.presentation.Presentation;
-import com.ilya.ivanov.slides.data.model.domain.user.User;
 import com.ilya.ivanov.slides.data.model.dto.presentation.PresentationDto;
 import com.ilya.ivanov.slides.data.repository.PresentationRepository;
 import com.ilya.ivanov.slides.exception.ResourceNotFoundException;
 import com.ilya.ivanov.slides.service.PresentationService;
 import com.ilya.ivanov.slides.service.UserService;
-import com.ilya.ivanov.slides.utils.SecurityUtils;
+import com.ilya.ivanov.slides.utils.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -59,6 +57,7 @@ public class PresentationServiceImpl implements PresentationService {
         presentationRepository.delete(presentation);
     }
 
+    @NotNull
     private Presentation getPresentation(PresentationDto presentationDto) {
         Optional<Presentation> presentation = getPresentation(presentationDto.getId());
         if (!presentation.isPresent()) {

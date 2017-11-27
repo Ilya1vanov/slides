@@ -26,6 +26,10 @@ public class PresentationDto {
     @ApiModelProperty(required = true)
     private String title;
 
+    private Long creationDate;
+
+    private Long modificationDate;
+
     @ApiModelProperty(required = true)
     private Collection<String> tags;
 
