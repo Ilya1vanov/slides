@@ -22,8 +22,4 @@ public final class Role implements GrantedAuthority {
     @Column(name = "authority", unique = true)
     @NonNull
     private String authority;
-
-    @Column(name = "description")
-    @NonNull
-    private String description;
 }
