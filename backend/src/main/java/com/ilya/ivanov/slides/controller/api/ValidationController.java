@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,18 +27,14 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 public class ValidationController {
 
     @PostMapping("/username")
-    @Contract(pure = true)
-    @ApiOperation(response = String.class, value = "Null returned when username is valid")
+    @ApiOperation(response = void.class, value = "Nothing returned when username is valid")
     @ApiResponse(code = SC_OK, message = "Username is valid")
-    public String validateUsername(@ApiParam @RequestBody @Valid UsernameDto usernameDto) {
-        return null;
+    public void validateUsername(@ApiParam @RequestBody @Valid UsernameDto usernameDto) {
     }
 
     @PostMapping("/email")
-    @Contract(pure = true)
-    @ApiOperation(response = String.class, value = "Null returned when email is valid")
+    @ApiOperation(response = void.class, value = "Nothing returned when email is valid")
     @ApiResponse(code = SC_OK, message = "Email is valid")
-    public String validateEmail(@ApiParam @RequestBody @Valid EmailDto emailDto) {
-        return null;
+    public void validateEmail(@ApiParam @RequestBody @Valid EmailDto emailDto) {
     }
 }
