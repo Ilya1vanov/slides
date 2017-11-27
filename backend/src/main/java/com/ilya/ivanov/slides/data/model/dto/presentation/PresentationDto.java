@@ -20,6 +20,8 @@ import java.util.Collection;
 public class PresentationDto {
     private Long id;
 
+    private String owner;
+
     @Size(min = 5, max = 25)
     @ApiModelProperty(required = true)
     private String title;

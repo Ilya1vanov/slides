@@ -48,7 +48,7 @@ public class PresentationController {
     @ApiOperation(response = PresentationDto.class, value = "Return Presentation repr")
     @ApiResponse(code = SC_OK, message = "Presentation created")
     public PresentationDto createPresentation(@ApiParam @RequestBody @Valid PresentationDto presentationDto) {
-        return Presentation.toDto(presentationService.addPresentation(presentationDto));
+        return presentationService.addPresentation(presentationDto).toDto();
     }
 
     @PatchMapping("/")
@@ -56,7 +56,7 @@ public class PresentationController {
     @ApiOperation(response = PresentationDto.class, responseContainer="List", value = "Update presentation")
     @ApiResponse(code = SC_OK, message = "Presentation updated")
     public PresentationDto editPresentation(@ApiParam @RequestBody @Valid PresentationDto presentationDto) {
-        return Presentation.toDto(presentationService.editPresentation(presentationDto));
+        return presentationService.editPresentation(presentationDto).toDto();
     }
 
     @DeleteMapping("/")

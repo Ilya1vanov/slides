@@ -1,6 +1,5 @@
 package com.ilya.ivanov.slides.config;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,7 +44,7 @@ public class SwaggerConfig {
         return new springfox.documentation.swagger.web.SecurityConfiguration(
                 clientId, clientSecret, realm,
                 "Slides",
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiaWQiOjIsImV4cCI6MTUxMTczNzc3OCwiYXV0aG9yaXRpZXMiOlsiU1RBTkRBUkRfVVNFUiIsIkFETUlOX1VTRVIiXSwianRpIjoiZGYxNjY1ODEtNGJhOS00ODgxLWI3OWEtOGQyNjk1YzViZWI4IiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.qGPJgsu5DivEYBKq7X3BW7P81sJ4wudEmTX8TEvtGN4",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiaWQiOjIsImV4cCI6MTUxMTgxMzk5OSwiYXV0aG9yaXRpZXMiOlsiU1RBTkRBUkRfVVNFUiIsIkFETUlOX1VTRVIiXSwianRpIjoiYTQ3ODQ1MzUtY2RlZC00ZGMxLWFjZDctY2VhMDA1OWJiNWZhIiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.60-4XqdWN5BYhUEu71-SKLmpUyXUGK0GvOfU4OZ3QyI",
                 ApiKeyVehicle.HEADER,
                 "Authorization",
                 ",");
