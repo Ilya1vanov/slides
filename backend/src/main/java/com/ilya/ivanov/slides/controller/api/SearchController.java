@@ -1,5 +1,6 @@
 package com.ilya.ivanov.slides.controller.api;
 
+import com.google.common.collect.Lists;
 import com.ilya.ivanov.slides.data.model.domain.presentation.Presentation;
 import com.ilya.ivanov.slides.data.model.domain.user.User;
 import com.ilya.ivanov.slides.data.model.dto.search.SearchResults;
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.hibernate.search.exception.EmptyQueryException;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +59,15 @@ public class SearchController {
     }
 
     private <T> List<T> getResults(FullTextEntityManager fullTextEntityManager, Class<T> tClass, String[] fields, String request) {
-        val qb = fullTextEntityManager.getSearchFactory()
-                .buildQueryBuilder().forEntity(tClass).get();
-        val luceneQuery = qb.keyword().onFields(fields).matching(request).createQuery();
-        val jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, tClass);
-        return jpaQuery.getResultList();
+        try {
+
+            val qb = fullTextEntityManager.getSearchFactory()
+                    .buildQueryBuilder().forEntity(tClass).get();
+            val luceneQuery = qb.keyword().onFields(fields).matching(request).createQuery();
+            val jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, tClass);
+            return jpaQuery.getResultList();
+        } catch (EmptyQueryException ignore) {
+            return Lists.newArrayList();
+        }
     }
 }

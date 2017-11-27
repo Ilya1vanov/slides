@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 
+import static com.ilya.ivanov.slides.constants.SearchConstants.defaultAnalyzerName;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -34,7 +35,7 @@ public final class User implements UserDetails {
     @Column(name = "username", unique = true)
     @NonNull
     @Field
-    @Analyzer(definition = "slides-analyzer")
+    @Analyzer(definition = defaultAnalyzerName)
     private String username;
 
     @Column(name = "email", unique = true)
@@ -48,13 +49,13 @@ public final class User implements UserDetails {
     @Column(name = "first_name")
     @NonNull
     @Field
-    @Analyzer(definition = "slides-analyzer")
+    @Analyzer(definition = defaultAnalyzerName)
     private String firstName;
 
     @Column(name = "last_name")
     @NonNull
     @Field
-    @Analyzer(definition = "slides-analyzer")
+    @Analyzer(definition = defaultAnalyzerName)
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER)

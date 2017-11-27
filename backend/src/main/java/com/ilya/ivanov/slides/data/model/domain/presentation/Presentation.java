@@ -14,6 +14,7 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 import javax.persistence.*;
 import java.util.Collection;
 
+import static com.ilya.ivanov.slides.constants.SearchConstants.defaultAnalyzerName;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -34,13 +35,13 @@ public final class Presentation {
     @Column(name = "title")
     @NonNull
     @Field
-    @Analyzer(definition = "slides-analyzer")
+    @Analyzer(definition = defaultAnalyzerName)
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "owner_id")
     @IndexedEmbedded
-    @Analyzer(definition = "slides-analyzer")
+    @Analyzer(definition = defaultAnalyzerName)
     private User owner;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -54,7 +55,7 @@ public final class Presentation {
     @CollectionTable(name = "tags", joinColumns = @JoinColumn(name = "tag_id"))
     @IndexedEmbedded
     @Field
-    @Analyzer(definition = "slides-analyzer")
+    @Analyzer(definition = defaultAnalyzerName)
     private Collection<String> tags = Lists.newArrayList();
 
     private Presentation(Long id, @NonNull String title, @NonNull Collection<String> tags) {
