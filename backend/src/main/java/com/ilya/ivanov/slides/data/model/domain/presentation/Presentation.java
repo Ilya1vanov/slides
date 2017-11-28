@@ -8,12 +8,14 @@ import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.search.annotations.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 
-import static com.ilya.ivanov.slides.constants.SearchConstants.defaultAnalyzerName;
+import static com.ilya.ivanov.slides.constants.SearchConstants.fullTextAnalyzer;
+import static com.ilya.ivanov.slides.constants.SearchConstants.tagsAnalyzer;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -34,7 +36,7 @@ public final class Presentation {
     @Column(name = "title")
     @NonNull
     @Field
-    @Analyzer(definition = defaultAnalyzerName)
+    @Analyzer(definition = fullTextAnalyzer)
     private String title;
 
     @Column(name = "creation_date")
@@ -50,7 +52,6 @@ public final class Presentation {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "owner_id")
     @IndexedEmbedded
-    @Analyzer(definition = defaultAnalyzerName)
     private User owner;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -64,7 +65,7 @@ public final class Presentation {
     @CollectionTable(name = "tags", joinColumns = @JoinColumn(name = "tag_id"))
     @IndexedEmbedded
     @Field
-    @Analyzer(definition = defaultAnalyzerName)
+    @Analyzer(definition = tagsAnalyzer)
     private Collection<String> tags = Lists.newArrayList();
 
     private Presentation(Long id, @NonNull String title, @NonNull Collection<String> tags) {
@@ -87,6 +88,7 @@ public final class Presentation {
         return this;
     }
 
+    @NotNull
     public PresentationDto toDto() {
         val id = this.getId();
         val owner = this.getOwner().getUsername();
@@ -100,6 +102,7 @@ public final class Presentation {
         return new PresentationDto(id, owner, title, creationDate, modificationDate, tags, slidesIds, link);
     }
 
+    @NotNull
     public static Presentation fromDto(PresentationDto presentationDto) {
         val id = presentationDto.getId();
         val title = presentationDto.getTitle();
