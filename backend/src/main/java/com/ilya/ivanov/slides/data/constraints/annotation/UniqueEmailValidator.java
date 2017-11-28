@@ -14,7 +14,7 @@ import javax.validation.ConstraintValidatorContext;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String> {
+public final class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String> {
     private final UserRepository userRepository;
 
     @Override

@@ -14,7 +14,7 @@ import javax.validation.ConstraintValidatorContext;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
+public final class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
     private final UserRepository userRepository;
 
     @Override

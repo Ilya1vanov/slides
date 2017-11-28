@@ -15,7 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ApiModel
 @AllArgsConstructor
-public class UserDto {
+public final class UserDto {
     private String username;
 
     private String firstName;

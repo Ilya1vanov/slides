@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ApiModel
-public class UsernameDto {
+public final class UsernameDto {
     @UniqueUsername
     private String username;
 }

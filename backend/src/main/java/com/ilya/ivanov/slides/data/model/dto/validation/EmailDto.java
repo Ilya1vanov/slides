@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ApiModel
-public class EmailDto {
+public final class EmailDto {
     @UniqueEmail
     private String email;
 }

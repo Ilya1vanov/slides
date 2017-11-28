@@ -17,7 +17,7 @@ import java.util.Collection;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @ApiModel
-public class PresentationDto {
+public final class PresentationDto {
     private Long id;
 
     private String owner;

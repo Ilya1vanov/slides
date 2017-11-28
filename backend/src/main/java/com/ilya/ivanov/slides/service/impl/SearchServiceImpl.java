@@ -31,7 +31,7 @@ import static java.util.stream.Collectors.toList;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SearchServiceImpl implements SearchService {
+public final class SearchServiceImpl implements SearchService {
 
     private final EntityManagerFactory entityManagerFactory;
 

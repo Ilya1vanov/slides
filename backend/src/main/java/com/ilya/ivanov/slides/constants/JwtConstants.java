@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Primary
 @Getter
-public class JwtConstants {
+public final class JwtConstants {
 
     @Getter
     @Setter(onMethod = @__(@Value("${security.jwt.scope-read}")))

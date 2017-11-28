@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class SecurityUtils {
+public final class SecurityUtils {
 
     private final TokenStore tokenStore;
 

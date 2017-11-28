@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserServiceImpl implements UserService {
+public final class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override

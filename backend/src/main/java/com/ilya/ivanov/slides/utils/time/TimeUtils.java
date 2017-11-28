@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by i.ivanov on 11/27/17.
  */
-public class TimeUtils {
+public final class TimeUtils {
     public static Date now() {
         return new Date();
     }

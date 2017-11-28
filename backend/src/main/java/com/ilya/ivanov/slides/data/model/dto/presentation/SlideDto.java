@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ApiModel
 @AllArgsConstructor
-public class SlideDto {
+public final class SlideDto {
     private Long id;
 
     @NotNull

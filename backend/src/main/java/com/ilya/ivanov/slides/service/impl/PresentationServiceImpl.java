@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class PresentationServiceImpl implements PresentationService {
+public final class PresentationServiceImpl implements PresentationService {
 
     private final UserService userService;
 

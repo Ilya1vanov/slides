@@ -17,7 +17,7 @@ import java.util.Collection;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ApiModel
 @AllArgsConstructor
-public class SearchResults {
+public final class SearchResults {
     private Collection<UserDto> users;
 
     private Collection<PresentationDto> presentations;

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class AppUserDetailsService implements UserDetailsService {
+public final class AppUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
