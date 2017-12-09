@@ -35,13 +35,13 @@ public final class SearchServiceImpl implements SearchService {
 
     private final EntityManagerFactory entityManagerFactory;
 
-    private static final String[] USER_SEARCH_FIELDS = {"username", "firstName", "lastName"};
+    private static final String[] USER_SEARCH_FIELDS = {User.USERNAME_KEY, User.FIRST_NAME_KEY, User.LAST_NAME_KEY};
 
-    private static final String[] PRESENTATION_SEARCH_FIELDS = {"title", "owner.username", "tags"};
+    private static final String[] PRESENTATION_SEARCH_FIELDS = {Presentation.TITLE_KEY, Presentation.USER_FIELD + User.USERNAME_KEY, Presentation.TAGS_TABLE_KEY};
 
-    private static final String PRESENTATION_CREATION_DATE_FIELD = "creationDate";
+    private static final String PRESENTATION_CREATION_DATE_FIELD = Presentation.CREATION_DATE_KEY;
 
-    private static final String PRESENTATION_MODIFICATION_DATE_FIELD = "modificationDate";
+    private static final String PRESENTATION_MODIFICATION_DATE_FIELD = Presentation.MODIFICATION_DATE_KEY;
 
     @Override
     public SearchResults fullTextSearch(String request) {
@@ -116,6 +116,7 @@ public final class SearchServiceImpl implements SearchService {
                 .stream().map(User::toDto).collect(toList());
     }
 
+    @SuppressWarnings("unchecked")
     private <T> List<T> getResults(FullTextEntityManager fullTextEntityManager, Class<T> tClass, Function<QueryBuilder, Query> qbf) {
         try {
             val qb = fullTextEntityManager.getSearchFactory()
