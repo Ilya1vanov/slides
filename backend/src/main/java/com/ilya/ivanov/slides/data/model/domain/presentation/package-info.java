@@ -3,7 +3,7 @@
  */
 
 @AnalyzerDefs({
-        @AnalyzerDef(name = namesAnalyzer,
+        @AnalyzerDef(name = NAMES_ANALYZER,
                 tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
                 filters = {
                         @TokenFilterDef(factory = LowerCaseFilterFactory.class),
@@ -13,7 +13,7 @@
                         })
                 }
         ),
-        @AnalyzerDef(name = usernameAnalyzer,
+        @AnalyzerDef(name = USERNAME_ANALYZER,
                 tokenizer = @TokenizerDef(factory = KeywordTokenizerFactory.class),
                 filters = {
                         @TokenFilterDef(factory = LowerCaseFilterFactory.class),
@@ -23,7 +23,7 @@
                         })
                 }
         ),
-        @AnalyzerDef(name = fullTextAnalyzer,
+        @AnalyzerDef(name = FULL_TEXT_ANALYZER,
                 tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
                 filters = {
                         @TokenFilterDef(factory = LowerCaseFilterFactory.class),
@@ -39,7 +39,7 @@
                         })
                 }
         ),
-        @AnalyzerDef(name = tagsAnalyzer,
+        @AnalyzerDef(name = TAGS_ANALYZER,
                 tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
                 charFilters = @CharFilterDef(factory = PatternReplaceCharFilterFactory.class, params = {
                         @Parameter(name = "pattern", value = "#"),

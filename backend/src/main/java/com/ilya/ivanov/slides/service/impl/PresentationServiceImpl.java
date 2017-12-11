@@ -1,8 +1,10 @@
 package com.ilya.ivanov.slides.service.impl;
 
 import com.ilya.ivanov.slides.data.model.domain.presentation.Presentation;
+import com.ilya.ivanov.slides.data.model.domain.presentation.SearchTag;
 import com.ilya.ivanov.slides.data.model.dto.presentation.PresentationDto;
 import com.ilya.ivanov.slides.data.repository.PresentationRepository;
+import com.ilya.ivanov.slides.data.repository.SearchTagRepository;
 import com.ilya.ivanov.slides.exception.ResourceNotFoundException;
 import com.ilya.ivanov.slides.service.PresentationService;
 import com.ilya.ivanov.slides.service.UserService;
@@ -17,19 +19,23 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by i.ivanov on 11/25/17.
  */
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public final class PresentationServiceImpl implements PresentationService {
+public class PresentationServiceImpl implements PresentationService {
 
     private final UserService userService;
 
     private final SecurityUtils securityUtils;
 
     private final PresentationRepository presentationRepository;
+
+    private final SearchTagRepository searchTagRepository;
 
     @Override
     public Collection<Presentation> getAllPresentations() {
@@ -39,6 +45,7 @@ public final class PresentationServiceImpl implements PresentationService {
     @Override
     public Presentation addPresentation(PresentationDto presentationDto) {
         val presentation = Presentation.fromDto(presentationDto);
+        addTags(presentation, presentationDto);
         userService.getUser().addPresentation(presentation);
         return presentationRepository.save(presentation);
     }
@@ -46,14 +53,16 @@ public final class PresentationServiceImpl implements PresentationService {
     @Override
     public Presentation editPresentation(PresentationDto presentationDto) {
         val presentation = getPresentation(presentationDto);
-        return presentationRepository.save(presentation.merge(presentationDto));
+        Presentation merge = presentation.merge(presentationDto);
+        addTags(merge, presentationDto);
+        return presentationRepository.save(merge);
     }
 
     @Override
     public void removePresentation(PresentationDto presentationDto) {
         Presentation presentation = getPresentation(presentationDto);
         userService.getUser().getPresentations()
-                .removeIf(pres -> Objects.equals(pres.getId(), presentationDto.getId()));
+                .removeIf(pres -> Objects.equals(pres.getId(), presentation.getId()));
         presentationRepository.delete(presentation);
     }
 
@@ -70,5 +79,13 @@ public final class PresentationServiceImpl implements PresentationService {
         return userService.getUser().getPresentations().stream()
                 .filter(presentation -> Objects.equals(presentation.getId(), id))
                 .findAny();
+    }
+
+    private void addTags(Presentation presentation, PresentationDto presentationDto) {
+        val tags = searchTagRepository.findByTagIn(presentationDto.getTags());
+        val tagsFromDto = presentationDto.getTags()
+                .stream().map(SearchTag::fromDto).collect(toList());
+        tags.addAll(tagsFromDto);
+        presentation.setSearchTags(tags);
     }
 }

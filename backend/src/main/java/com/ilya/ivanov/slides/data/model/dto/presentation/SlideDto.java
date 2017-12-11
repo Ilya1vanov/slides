@@ -19,5 +19,8 @@ public final class SlideDto {
     private Long id;
 
     @NotNull
+    private Long order;
+
+    @NotNull
     private String content;
 }

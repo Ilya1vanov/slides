@@ -19,6 +19,7 @@ public final class Slide {
     public static final String TABLE_KEY = "slide";
 
     public static final String ID_KEY = "id";
+    public static final String ORDER_KEY = "slide_order";
     public static final String CONTENT_KEY = "content";
 
     @Id
@@ -26,13 +27,18 @@ public final class Slide {
     @Column(name = ID_KEY)
     private Long id;
 
-    @Column(name = CONTENT_KEY)
+    @Column(name = ORDER_KEY, nullable = false)
+    @NonNull
+    private Long order;
+
+    @Column(name = CONTENT_KEY, length = 2048)
     @NonNull
     private String content;
 
     public static Slide fromDto(SlideDto slideDto) {
+        val order = slideDto.getOrder();
         val content = slideDto.getContent();
-        return new Slide(content);
+        return new Slide(order, content);
     }
 
     public Slide merge(SlideDto slideDto) {

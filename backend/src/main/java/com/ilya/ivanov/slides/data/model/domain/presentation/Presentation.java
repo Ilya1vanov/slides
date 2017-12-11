@@ -1,23 +1,23 @@
 package com.ilya.ivanov.slides.data.model.domain.presentation;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.ilya.ivanov.slides.data.model.domain.user.User;
 import com.ilya.ivanov.slides.data.model.dto.presentation.PresentationDto;
 import com.ilya.ivanov.slides.utils.time.TimeUtils;
 import lombok.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.search.annotations.*;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
-import static com.ilya.ivanov.slides.constants.SearchConstants.fullTextAnalyzer;
-import static com.ilya.ivanov.slides.constants.SearchConstants.tagsAnalyzer;
+import static com.ilya.ivanov.slides.constants.SearchConstants.FULL_TEXT_ANALYZER;
 import static com.ilya.ivanov.slides.data.model.domain.presentation.Presentation.TABLE_KEY;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by i.ivanov on 11/23/17.
@@ -34,11 +34,17 @@ public final class Presentation {
     public static final String ID_KEY = "id";
     public static final String TITLE_KEY = "title";
     public static final String CREATION_DATE_KEY = "creation_date";
+    public static final String CREATION_DATE_FIELD = "creationDate";
     public static final String MODIFICATION_DATE_KEY = "modification_date";
-    public static final String TAGS_TABLE_KEY = "tags";
-    public static final String TAGS_ID_KEY = "tag_id";
+    public static final String MODIFICATION_DATE_FIELD = "modificationDate";
+    public static final String TAGS_TABLE_KEY = "presentation_tags";
+    public static final String TAGS_PRESENTATION_ID_KEY = "presentation_id";
+    public static final String TAGS_TAG_ID_KEY = "tag_id";
+    public static final String TAGS_FIELD_KEY = "searchTags";
     public static final String USER_KEY = "owner_id";
     public static final String USER_FIELD = "owner";
+
+    public static final String TAGS_AUTOCOMPLETE_KEY = "searchTags-autocomplete";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +54,7 @@ public final class Presentation {
     @Column(name = TITLE_KEY)
     @NonNull
     @Field
-    @Analyzer(definition = fullTextAnalyzer)
+    @Analyzer(definition = FULL_TEXT_ANALYZER)
     private String title;
 
     @Column(name = CREATION_DATE_KEY)
@@ -72,18 +78,18 @@ public final class Presentation {
     @OneToOne(cascade = CascadeType.ALL)
     private ShareLink shareLink;
 
-    @ElementCollection
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @CollectionTable(name = TAGS_TABLE_KEY, joinColumns = @JoinColumn(name = TAGS_ID_KEY))
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @JoinTable(name = TAGS_TABLE_KEY, joinColumns
+            = @JoinColumn(name = TAGS_PRESENTATION_ID_KEY,
+            referencedColumnName = ID_KEY),
+            inverseJoinColumns = @JoinColumn(name = TAGS_TAG_ID_KEY,
+                    referencedColumnName = SearchTag.ID_KEY))
     @IndexedEmbedded
-    @Field
-    @Analyzer(definition = tagsAnalyzer)
-    private Collection<String> tags = Lists.newArrayList();
+    private Set<SearchTag> searchTags = Sets.newHashSet();
 
-    private Presentation(Long id, @NonNull String title, @NonNull Collection<String> tags) {
+    private Presentation(Long id, @NonNull String title) {
         this(title);
         this.id = id;
-        this.tags = tags;
     }
 
     @PreUpdate
@@ -93,7 +99,6 @@ public final class Presentation {
 
     public Presentation merge(PresentationDto presentationDto) {
         this.title = presentationDto.getTitle();
-        this.tags = presentationDto.getTags();
         if (this.shareLink != null) {
             this.shareLink.merge(presentationDto.getShareLink());
         }
@@ -110,7 +115,7 @@ public final class Presentation {
         val slidesIds = this.getSlides().stream().map(Slide::getId).collect(toList());
         val shareLink = this.getShareLink();
         String link = shareLink != null ? shareLink.getLink() : null;
-        val tags = this.getTags();
+        val tags = this.getSearchTags().stream().map(SearchTag::toDto).collect(toSet());
         return new PresentationDto(id, owner, title, creationDate, modificationDate, tags, slidesIds, link);
     }
 
@@ -118,7 +123,6 @@ public final class Presentation {
     public static Presentation fromDto(PresentationDto presentationDto) {
         val id = presentationDto.getId();
         val title = presentationDto.getTitle();
-        val tags = presentationDto.getTags();
-        return new Presentation(id, title, tags);
+        return new Presentation(id, title);
     }
 }

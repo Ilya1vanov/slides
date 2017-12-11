@@ -1,8 +1,6 @@
 package com.ilya.ivanov.slides.service;
 
 import com.ilya.ivanov.slides.data.model.domain.user.User;
-import lombok.val;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 
@@ -16,5 +14,5 @@ public interface UserService {
 
     User saveUser(User user);
 
-    public User getUser();
+    User getUser();
 }

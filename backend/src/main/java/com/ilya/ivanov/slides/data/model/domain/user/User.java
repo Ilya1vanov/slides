@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 
-import static com.ilya.ivanov.slides.constants.SearchConstants.namesAnalyzer;
-import static com.ilya.ivanov.slides.constants.SearchConstants.usernameAnalyzer;
+import static com.ilya.ivanov.slides.constants.SearchConstants.NAMES_ANALYZER;
+import static com.ilya.ivanov.slides.constants.SearchConstants.USERNAME_ANALYZER;
 import static com.ilya.ivanov.slides.data.model.domain.user.User.TABLE_KEY;
 import static java.util.stream.Collectors.toList;
 
@@ -36,7 +36,9 @@ public final class User implements UserDetails {
     public static final String EMAIL_KEY = "email";
     public static final String PASSWORD_KEY = "password";
     public static final String FIRST_NAME_KEY = "first_name";
+    public static final String FIRST_NAME_FIELD = "firstName";
     public static final String LAST_NAME_KEY = "last_name";
+    public static final String LAST_NAME_FIELD = "lastName";
     public static final String AUTHORITIES_TABLE_KEY = "user_authorities";
     public static final String AUTHORITIES_USER_ID_KEY = "user_id";
     public static final String AUTHORITIES_ROLE_ID_KEY = "role_id";
@@ -49,7 +51,7 @@ public final class User implements UserDetails {
     @Column(name = USERNAME_KEY, unique = true)
     @NonNull
     @Field
-    @Analyzer(definition = usernameAnalyzer)
+    @Analyzer(definition = USERNAME_ANALYZER)
     private String username;
 
     @Column(name = EMAIL_KEY, unique = true)
@@ -63,13 +65,13 @@ public final class User implements UserDetails {
     @Column(name = FIRST_NAME_KEY)
     @NonNull
     @Field
-    @Analyzer(definition = namesAnalyzer)
+    @Analyzer(definition = NAMES_ANALYZER)
     private String firstName;
 
     @Column(name = LAST_NAME_KEY)
     @NonNull
     @Field
-    @Analyzer(definition = namesAnalyzer)
+    @Analyzer(definition = NAMES_ANALYZER)
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER)

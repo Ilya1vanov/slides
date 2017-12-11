@@ -17904,7 +17904,7 @@ BrowserPlatformLocation.ctorParameters = function () { return [
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * A service that can be used to get and add meta tags.
+ * A service that can be used to get and add meta searchTags.
  *
  * \@experimental
  */
@@ -19493,7 +19493,7 @@ var SanitizingHtmlSerializer = (function () {
                 continue;
             }
             while (current) {
-                // Leaving the element. Walk up and to the right, closing tags as we go.
+                // Leaving the element. Walk up and to the right, closing searchTags as we go.
                 if (DOM.isElementNode(current)) {
                     this.endElement(/** @type {?} */ (current));
                 }
@@ -19569,7 +19569,8 @@ function checkClobberedElement(node, nextNode) {
     }
     return nextNode;
 }
-// Regular Expressions for parsing tags and attributes
+
+// Regular Expressions for parsing searchTags and attributes
 var SURROGATE_PAIR_REGEXP = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
 // ! to ~ is the ASCII range.
 var NON_ALPHANUMERIC_REGEXP = /([^\#-~ |!])/g;
@@ -19812,7 +19813,7 @@ var DomSanitizer = (function () {
     DomSanitizer.prototype.sanitize = function (context, value) { };
     /**
      * Bypass security and trust the given value to be safe HTML. Only use this when the bound HTML
-     * is unsafe (e.g. contains `<script>` tags) and the code should be executed. The sanitizer will
+     * is unsafe (e.g. contains `<script>` searchTags) and the code should be executed. The sanitizer will
      * leave safe HTML intact, so in most situations this method should not be used.
      *
      * **WARNING:** calling this method with untrusted user data exposes your application to XSS
@@ -42720,10 +42721,10 @@ var _TreeBuilder = (function () {
             ((this._getParentElement())).endSourceSpan = endTagToken.sourceSpan;
         }
         if (this.getTagDefinition(fullName).isVoid) {
-            this._errors.push(TreeError.create(fullName, endTagToken.sourceSpan, "Void elements do not have end tags \"" + endTagToken.parts[1] + "\""));
+            this._errors.push(TreeError.create(fullName, endTagToken.sourceSpan, "Void elements do not have end searchTags \"" + endTagToken.parts[1] + "\""));
         }
         else if (!this._popElement(fullName)) {
-            var /** @type {?} */ errMsg = "Unexpected closing tag \"" + fullName + "\". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags";
+            var /** @type {?} */ errMsg = "Unexpected closing tag \"" + fullName + "\". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-searchTags";
             this._errors.push(TreeError.create(fullName, endTagToken.sourceSpan, errMsg));
         }
     };
@@ -44877,7 +44878,7 @@ var _WriteVisitor = (function () {
         var /** @type {?} */ ctype = getCtypeForTag(ph.tag);
         var /** @type {?} */ startTagPh = new Tag(_PLACEHOLDER_TAG, { id: ph.startName, ctype: ctype });
         if (ph.isVoid) {
-            // void tags have no children nor closing tags
+            // void searchTags have no children nor closing searchTags
             return [startTagPh];
         }
         var /** @type {?} */ closeTagPh = new Tag(_PLACEHOLDER_TAG, { id: ph.closeName, ctype: ctype });
@@ -45676,7 +45677,7 @@ var _Visitor$2 = (function () {
         var /** @type {?} */ startEx = new Tag(_EXEMPLE_TAG, {}, [new Text$2("<" + ph.tag + ">")]);
         var /** @type {?} */ startTagPh = new Tag(_PLACEHOLDER_TAG$2, { name: ph.startName }, [startEx]);
         if (ph.isVoid) {
-            // void tags have no children nor closing tags
+            // void searchTags have no children nor closing searchTags
             return [startTagPh];
         }
         var /** @type {?} */ closeEx = new Tag(_EXEMPLE_TAG, {}, [new Text$2("</" + ph.tag + ">")]);
@@ -48827,7 +48828,7 @@ var TemplateParseVisitor = (function () {
         }
     };
     /**
-     * Make sure that non-angular tags conform to the schemas.
+     * Make sure that non-angular searchTags conform to the schemas.
      *
      * Note: An element is considered an angular tag when at least one directive selector matches the
      * tag name.
@@ -55522,7 +55523,7 @@ var _TsEmitterVisitor = (function (_super) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * Map from tagName|propertyName SecurityContext. Properties applying to all tags use '*'.
+ * Map from tagName|propertyName SecurityContext. Properties applying to all searchTags use '*'.
  */
 var SECURITY_SCHEMA = {};
 /**
@@ -62864,7 +62865,7 @@ var Extractor = (function () {
         var /** @type {?} */ normalizer = new DirectiveNormalizer({ get: function (url) { return host.loadResource(url); } }, urlResolver, htmlParser, config);
         var /** @type {?} */ elementSchemaRegistry = new DomElementSchemaRegistry();
         var /** @type {?} */ resolver = new CompileMetadataResolver(config, new NgModuleResolver(staticReflector), new DirectiveResolver(staticReflector), new PipeResolver(staticReflector), summaryResolver, elementSchemaRegistry, normalizer, new __WEBPACK_IMPORTED_MODULE_1__angular_core__["ɵConsole"](), symbolCache, staticReflector);
-        // TODO(vicb): implicit tags & attributes
+        // TODO(vicb): implicit searchTags & attributes
         var /** @type {?} */ messageBundle = new MessageBundle(htmlParser, [], {}, locale);
         var /** @type {?} */ extractor = new Extractor(host, staticSymbolResolver, messageBundle, resolver);
         return { extractor: extractor, staticReflector: staticReflector };
@@ -67102,7 +67103,7 @@ var resolvedPromise = Promise.resolve(null);
  * \@howToUse
  *
  * As soon as you import the `FormsModule`, this directive becomes active by default on
- * all `<form>` tags.  You don't need to add a special selector.
+ * all `<form>` searchTags.  You don't need to add a special selector.
  *
  * You can export the directive into a local template variable using `ngForm` as the key
  * (ex: `#myForm="ngForm"`). This is optional, but useful.  Many properties from the underlying
@@ -67118,11 +67119,11 @@ var resolvedPromise = Promise.resolve(null);
  * triggered a form submission. The `ngSubmit` event will be emitted with the original form
  * submission event.
  *
- * In template driven forms, all `<form>` tags are automatically tagged as `NgForm`.
+ * In template driven forms, all `<form>` searchTags are automatically tagged as `NgForm`.
  * If you want to import the `FormsModule` but skip its usage in some forms,
  * for example, to use native HTML5 validation, you can add `ngNoForm` and the `<form>`
- * tags won't create an `NgForm` directive. In reactive forms, using `ngNoForm` is
- * unnecessary because the `<form>` tags are inert. In that case, you would
+ * searchTags won't create an `NgForm` directive. In reactive forms, using `ngNoForm` is
+ * unnecessary because the `<form>` searchTags are inert. In that case, you would
  * refrain from using the `formGroup` directive.
  *
  * {\@example forms/ts/simpleForm/simple_form_example.ts region='Component'}
@@ -67383,7 +67384,7 @@ var modelGroupProvider = {
  * \@howToUse
  *
  * This directive can only be used as a child of {\@link NgForm} (or in other words,
- * within `<form>` tags).
+ * within `<form>` searchTags).
  *
  * Use this directive if you'd like to create a sub-group within a form. This can
  * come in handy if you want to validate a sub-group of your form separately from
@@ -67501,7 +67502,7 @@ var resolvedPromise$1 = Promise.resolve(null);
  *
  * {\@example forms/ts/simpleNgModel/simple_ng_model_example.ts region='Component'}
  *
- * When using the `ngModel` within `<form>` tags, you'll also need to supply a `name` attribute
+ * When using the `ngModel` within `<form>` searchTags, you'll also need to supply a `name` attribute
  * so that the control can be registered with the parent form under that name.
  *
  * It's worth noting that in the context of a parent form, you often can skip one-way or

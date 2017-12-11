@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by i.ivanov on 11/23/17.
@@ -31,7 +32,7 @@ public final class PresentationDto {
     private Long modificationDate;
 
     @ApiModelProperty(required = true)
-    private Collection<String> tags;
+    private Set<String> tags;
 
     private Collection<Long> slides;
 
